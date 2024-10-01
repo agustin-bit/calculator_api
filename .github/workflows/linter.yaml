@@ -1,30 +1,33 @@
-# NOTE: This would need to be in the root of the repo to use it
-# I placed it here because it is associated with this video
+---
+name: Lint
 
-name: Lint Code Base
+on: # yamllint disable-line rule:truthy
+  push: null
+  pull_request: null
 
-on:
-  push:
-    branches-ignore: [master]
-    # Remove the line above to run when pushing to master
-  pull_request:
-    branches: [master]
+permissions: {}
 
 jobs:
   build:
-    name: Lint Code Base
+    name: Lint
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
           fetch-depth: 0
 
-      - name: Lint Code Base
-        uses: github/super-linter@v3
+      - name: Super-linter
+        uses: super-linter/super-linter@v7.1.0 # x-release-please-version
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
