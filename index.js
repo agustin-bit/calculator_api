@@ -14,7 +14,7 @@ const app = express();
 app.use(
   cors({
     origin: "*", // Replace with your frontend's URL
-  })
+  }),
 );
 
 const convertUnits = (rawValue, conversor) => {
