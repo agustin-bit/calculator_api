@@ -1,4 +1,4 @@
-const { inchToCm, cmToInch } = require("../converters.js");
+const { inchToCm, cmToInch, fahrenheitToCelsius } = require("../converters.js");
 
 describe("Converters test", () => {
   it("Inch to cm", () => {
@@ -6,5 +6,8 @@ describe("Converters test", () => {
   });
   it("Cm to inch", () => {
     expect(cmToInch(2.54)).toBe(1);
+  });
+  it("F to C", () => {
+    expect(fahrenheitToCelsius(-22)).toBe(-30);
   });
 });
