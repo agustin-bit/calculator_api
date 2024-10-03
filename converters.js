@@ -1,5 +1,5 @@
 // Measurement
-const inchToCm = (inches) => inches * 2.54;
+const inchToCm = (inches) => inches * 2.50;
 const cmToInch = (cm) => cm / 2.54;
 
 // Temperature
